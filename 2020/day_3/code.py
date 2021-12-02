@@ -23,6 +23,14 @@ def n_trees(area: list, slope: tuple, n_lines: int) -> int:
 def part_1():
     area = read_file().splitlines()
     n_lines = len(area)
+    trees = n_trees(area, (3, 1), n_lines)
+
+    print("Solution for part  of day 1:", trees)
+
+
+def part_2():
+    area = read_file().splitlines()
+    n_lines = len(area)
     trees = 1
     for slope in (
             (1, 1),
@@ -35,4 +43,6 @@ def part_1():
 
     print("Solution for part 2 of day 1:", trees)
 
+
 part_1()
+part_2()
