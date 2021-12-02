@@ -11,7 +11,7 @@ def part_1():
             x.split()[2]
         ) for x in read_file().splitlines()
     ]
-    print("Solution for part 1 of day 1:", sum(r1 <= string.count(letter) <= r2 for (r1, r2), letter, string in ranges))
+    print("Solution for part 1 of day 2:", sum(r1 <= string.count(letter) <= r2 for (r1, r2), letter, string in ranges))
 
 
 def part_2():
@@ -23,7 +23,7 @@ def part_2():
         ) for x in read_file().splitlines()
     ]
 
-    print("Solution for part 1 of day 1:", sum((string[r1-1] == letter) ^ (string[r2-1] == letter) for (r1, r2), letter, string in ranges))
+    print("Solution for part 2 of day 2:", sum((string[r1-1] == letter) ^ (string[r2-1] == letter) for (r1, r2), letter, string in ranges))
 
 
 part_1()
