@@ -25,7 +25,7 @@ def part_1():
     n_lines = len(area)
     trees = n_trees(area, (3, 1), n_lines)
 
-    print("Solution for part  of day 1:", trees)
+    print("Solution for part 1 of day 3:", trees)
 
 
 def part_2():
@@ -41,7 +41,7 @@ def part_2():
     ):
         trees *= n_trees(area, slope, n_lines)
 
-    print("Solution for part 2 of day 1:", trees)
+    print("Solution for part 2 of day 3:", trees)
 
 
 part_1()
