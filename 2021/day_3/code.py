@@ -6,9 +6,6 @@ def read_file(path: str = "input") -> str:
         return file.read()
 
 
-def most_common(l: list):
-    return
-
 def to_columns(binary):
     c = collections.defaultdict(list)
     for b in binary:
