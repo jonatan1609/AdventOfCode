@@ -1,3 +1,4 @@
+from sys import argv
 from re import compile
 from functools import reduce
 from operator import mul
@@ -5,7 +6,9 @@ from operator import mul
 
 COLOR_AND_AMOUNT_PATTEN = compile(r"(\d+) (\w+)")
 configuration = {"red": 12, "green": 13, "blue": 14}
-def read_file_as_lines(filename: str = "input") -> list[str]:
+
+
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 
@@ -38,7 +41,6 @@ def part_2() -> str:
         power_sum += reduce(mul, game_min_amount_of_cubes.values())
     
     return f"The result for part 2 is {power_sum}"
-
 
 
 def main() -> None:

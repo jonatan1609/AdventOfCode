@@ -1,4 +1,7 @@
-def read_file_as_lines(filename: str = "input") -> list[str]:
+from sys import argv
+
+
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 

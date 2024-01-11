@@ -1,12 +1,15 @@
+from sys import argv
 from functools import reduce
 
 
-def read_file_as_lines(filename: str = "input") -> list[str]:
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 
+
 def create_difference_series(series: list[int]) -> list[int]:
     return [b - a for a, b in zip(series, series[1:])]
+
 
 def part_1() -> str:
     lines = read_file_as_lines()

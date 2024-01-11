@@ -1,3 +1,4 @@
+from sys import argv
 from itertools import count
 
 
@@ -12,12 +13,12 @@ conversion_chain = [
 ]
 
 
-def read_file_as_categories(filename: str = "input") -> list[str]:
+def read_file_as_categories(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return f.read().split("\n\n")
 
 
-def convert_category_values_to_ints(values: list[str]):
+def convert_category_values_to_ints(values: list):
     for idx, value in enumerate(values[:]):
         values[idx] = list(map(int, value.split()))
     return values
@@ -67,7 +68,7 @@ def part_2_slow() -> str:
     categories_as_dict = {}
     for category in categories:
         title, values = category.split(":")
-        categories_as_dict[title] = values.strip().split("\n")
+        categories_as_dict[title] = values.strip().split("\n\n")
         convert_category_values_to_ints(categories_as_dict[title])
 
     seed_ranges = iter(categories_as_dict["seeds"][0])

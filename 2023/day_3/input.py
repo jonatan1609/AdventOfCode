@@ -1,3 +1,4 @@
+from sys import argv
 from itertools import product
 from re import compile
 from string import digits
@@ -6,7 +7,8 @@ from operator import mul
 
 DIGITS_PATTERN = compile(r"(\d+)")
 
-def read_file_as_lines(filename: str = "input") -> list[str]:
+
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
     
@@ -23,7 +25,7 @@ def is_special_symbol_around(lines: list[str], current_line: int, start_pos: int
             return True
 
 
-def find_asterisk_around(lines: list[str], current_line: int, start_pos: int, end_pos: int) -> tuple[int, int] | None:
+def find_asterisk_around(lines: list[str], current_line: int, start_pos: int, end_pos: int) -> tuple[int, int]:
     directions = list(product(range(start_pos - 1, end_pos + 1), (current_line + 1, current_line - 1)))
     directions += [(start_pos - 1, current_line), (end_pos, current_line)]
     line_length = len(lines[current_line])
@@ -46,9 +48,9 @@ def part_1() -> str:
     return f"The result for part 1 is {result_sum}"
 
 
-def part_2() -> None:
+def part_2() -> str:
     lines = read_file_as_lines()
-    results = defaultdict(list) # (x, y) -> [number1, number2]
+    results = defaultdict(list)  # (x, y) -> [number1, number2]
     for line_index, line in enumerate(lines):
         digits_in_line = DIGITS_PATTERN.finditer(line)
         for number_match in digits_in_line:
@@ -58,7 +60,6 @@ def part_2() -> None:
             results[pos].append(int(number_match.groups()[0]))
     gear_ratio = sum(mul(*numbers) for numbers in results.values() if len(numbers) > 1)
     return f"The result for part 2 is {gear_ratio}"
-
 
 
 def main():

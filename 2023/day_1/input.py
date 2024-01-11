@@ -1,4 +1,6 @@
+from sys import argv
 from re import compile
+
 
 NUMBERS_TO_DIGITS = {
     "one": "1",
@@ -16,7 +18,7 @@ NUMBERS_AND_DIGITS_PATTERN_LTR = compile("|".join(("|".join(NUMBERS_TO_DIGITS), 
 NUMBERS_AND_DIGITS_PATTERN_RTL = compile(NUMBERS_AND_DIGITS_PATTERN_LTR.pattern[::-1])
 
 
-def read_file_as_lines(filename: str = "input") -> list[str]:
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 
@@ -25,7 +27,7 @@ def translate_numbers_to_digits(list_of_numbers: list[str]) -> str:
     return "".join(NUMBERS_TO_DIGITS.get(number, number) for number in list_of_numbers)
 
 
-def find_numbers_in_line(line: str) -> list[str]:
+def find_numbers_in_line(line: str) -> tuple[str, str]:
     return (
         NUMBERS_AND_DIGITS_PATTERN_LTR.search(line).group(),
         NUMBERS_AND_DIGITS_PATTERN_RTL.search(line[::-1]).group()[::-1]
@@ -53,7 +55,6 @@ def part_2() -> str:
             first, last = numbers
             calibration_sum += int(first + last)
     return f"The result for part 2 is {calibration_sum}"
-
 
 
 def main() -> None:

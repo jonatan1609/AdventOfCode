@@ -1,7 +1,8 @@
+from sys import argv
 from math import ceil, floor
 
 
-def read_file_as_lines(filename: str = "input") -> list[str]:
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 

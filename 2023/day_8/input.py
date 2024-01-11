@@ -1,3 +1,4 @@
+from sys import argv
 from re import compile
 from itertools import cycle
 from math import lcm
@@ -15,7 +16,7 @@ START_NODE_SUFFIX = 'A'
 END_NODE_SUFFIX = 'Z'
 
 
-def read_file(filename: str = "input") -> list[str]:
+def read_file(filename: str = argv[1]) -> str:
     with open(filename, "r") as f:
         return f.read()
 
@@ -102,6 +103,7 @@ def part_2() -> str:
     graph = generate_graph(graph_lines)
     start_nodes = {node for node in graph if node.endswith(START_NODE_SUFFIX)}
     circle_lengths = []
+    circle_start = None
     for source_node in start_nodes:
         number_of_steps = 0
         checkpoints = []

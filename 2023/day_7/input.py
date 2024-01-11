@@ -1,3 +1,4 @@
+from sys import argv
 from enum import IntEnum, auto
 from collections import Counter
 from dataclasses import dataclass
@@ -28,12 +29,12 @@ class Hand:
                 return self.cards_set.index(self_card) < self.cards_set.index(other_card)
 
 
-def read_file_as_lines(filename: str = "input") -> list[str]:
+def read_file_as_lines(filename: str = argv[1]) -> list[str]:
     with open(filename, "r") as f:
         return list(map(str.strip, f))
 
 
-def get_hand_type(cards: str) -> str:
+def get_hand_type(cards: str) -> HandType:
     cards: Counter = Counter(cards)
     most_common_cards = cards.most_common(2)
     if most_common_cards[0][1] == 5:
@@ -53,6 +54,7 @@ def get_hand_type(cards: str) -> str:
 
 def change_joker_to_match_the_best_set(cards: str) -> str:
     cards_counter: Counter = Counter(cards)
+    most_common_card = ""
     for most_common_card, _ in cards_counter.most_common(2):
         if most_common_card != "J":
             break
